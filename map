@@ -1,0 +1,70 @@
+package main
+
+import "fmt"
+
+func main() {
+	//map1()
+	//map2()
+	//map3()
+	mmp := make(map[string]interface{})
+	mmp["name"] = "西门东"
+	mmp["sex"] = "male"
+	mmp["hobby"] = "female"
+	mmp["rmb"] = 0.5
+	fmt.Println("——————————没有检验的查询——————————")
+	fmt.Printf("mmp[sex]=%s\n", mmp["sex"])
+	fmt.Println(mmp["sex"], mmp["最喜欢的书"])
+	fmt.Println("——————————有检验的查询——————————")
+	value, ok := mmp["最喜欢的书"]
+	if ok {
+		fmt.Printf("value", value)
+	} else {
+		fmt.Println("东哥不读书")
+	}
+	for key, value := range mmp {
+		fmt.Println(key, value)
+	}
+
+}
+
+//修改键值对
+func map3() {
+	mmp := make(map[string]interface{})
+	mmp["name"] = "西门东"
+	mmp["sex"] = "male"
+	mmp["hobby"] = "female"
+	mmp["rmb"] = 0.5
+
+	mmp["hobby"] = []string{"抽烟", "喝酒", "烫头", "去浪"}
+	mmp["rmb"] = -3333
+	fmt.Printf("type=%T,value=%v,len=%d", mmp, mmp, len(mmp))
+}
+
+//删除键值对
+func map2() {
+	mmp := make(map[string]interface{})
+	mmp["name"] = "西门东"
+	mmp["sex"] = "male"
+	mmp["hobby"] = "female"
+	mmp["rmb"] = 0.5
+	//删除键值对
+	delete(mmp, "hobby")
+	fmt.Printf("type=%T,value=%v,len=%d", mmp, mmp, len(mmp))
+}
+
+func map1() {
+	//var mmp = map[string]int{}
+	//var mmp  map[string]int
+	//var mmp = map[string]int{"代码量": 1111, "酒量": 20}
+	//用过内建函数make来创建
+	//mmp := make(map[string]int)
+	//fmt.Printf("type=%T,value=%v,len=%d", mmp, mmp, len(mmp))
+
+	//创建一个string为键，空接口为值（值为任意类型）
+	mmp := make(map[string]interface{})
+	mmp["name"] = "西门东"
+	mmp["sex"] = "male"
+	mmp["hobby"] = "female"
+	mmp["rmb"] = 0.5
+	fmt.Printf("type=%T,value=%v,len=%d", mmp, mmp, len(mmp))
+}
