@@ -1,0 +1,43 @@
+/*package main
+
+import "fmt"
+
+func main() {
+
+	ch1 := make(chan string)
+	go func() {
+		for i := 0; i < 10; i++ {
+			fmt.Println("子协程中输出:", i)
+		}
+		ch1 <- "over"
+		fmt.Println("子协程结束")
+
+	}()
+	v := <-ch1 // 从Channel ch中接收数据，并将数据赋值给v
+	fmt.Println("main读取数据时:", v)
+}
+*/
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	ch1 := make(chan int)
+	done := make(chan bool)
+	//读取
+	go func() {
+		fmt.Println("开始执行")
+		time.Sleep(3 * time.Second)
+		data1 := <-ch1
+		fmt.Println("读取数据：", data1)
+		<-done
+	}()
+	//写入
+	time.Sleep(5 * time.Second)
+	ch1 <- 100
+	fmt.Println("写入数据：", 100)
+	done <- true
+}
