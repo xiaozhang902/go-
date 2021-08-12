@@ -1,0 +1,44 @@
+package main
+
+import "fmt"
+
+//接口:只包含抽象方法
+//定义USB接口
+
+type USB interface {
+	/*定义了三个抽象方法不做实现*/
+	//USB连接
+	Connect() bool
+	//USB读数据
+	ReaData() []byte
+	//USB断开
+	Disconnect() bool
+}
+type Upan struct {
+	storage int
+}
+
+func (Up *Upan) Connect() bool {
+	fmt.Println("优盘连接成功")
+	return true
+}
+func (Up *Upan) ReaData() []byte {
+	fmt.Println("优盘读取数据")
+	return []byte("撸码艺术")
+}
+func (Up *Upan) Disconnect() bool {
+	fmt.Println("优盘已经断开")
+	return true
+}
+func main() {
+	//定义接口对象
+	var usb USB
+	//用具体实现类去为接口赋值
+	up := Upan{32 * 1024 * 1024 * 1024}
+	usb = &up
+	//操作usb
+	usb.ReaData()
+	usb.Disconnect()
+	usb.ReaData()
+
+}
